@@ -1,74 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El nadador fuerte</title>
-    <style>
-        /* Fuente elegante y moderna */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El nadador fuerte</title>
+<style>
+:root{
+--bg:#000;
+--text:rgba(255,255,255,0.95);
+--accent:#ff0055;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);font-family:'Courier New',monospace;color:var(--text);}
+body{display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;}
 
-        body {
-            background-color: #000;
-            color: #eaeaea;
-            font-family: 'Playfair Display', serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            padding: 20px;
-        }
 
-        .contenedor {
-            max-width: 900px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 50px 30px;
-            border-radius: 14px;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.07);
-            line-height: 1.8;
-            font-size: 1.3rem;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(4px);
-            animation: aparecer 2s ease-in-out;
-        }
+/* Fondo de imagen con efecto dither agresivo */
+.bg{
+position:fixed;inset:0;z-index:0;
+background:url('images/1.jpg') center/cover no-repeat;
+filter:contrast(300%) brightness(120%) grayscale(100%) saturate(0);
+mix-blend-mode:hard-light;
+animation:shake 8s infinite steps(2,end);
+opacity:0.9;
+image-rendering:pixelated;
+}
 
-        p {
-            margin: 0;
-        }
 
-        /* Animación de aparición suave */
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Capa de patrón para simular dithering */
+.bg::after{
+content:"";position:absolute;inset:0;pointer-events:none;
+background-image:
+repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 2px),
+repeating-linear-gradient(-45deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 2px);
+background-size:2px 2px;
+mix-blend-mode:difference;
+opacity:0.35;
+}
 
-        /* Ajuste tipográfico para móviles */
-        @media (max-width: 600px) {
-            .contenedor {
-                padding: 30px 20px;
-                font-size: 1.1rem;
-                line-height: 1.7;
-            }
-        }
-    </style>
+
+@keyframes shake{
+0%,100%{transform:translate(0,0)}
+20%{transform:translate(1px,1px)}
+40%{transform:translate(-1px,1px)}
+60%{transform:translate(1px,-1px)}
+80%{transform:translate(-1px,-1px)}
+}
+
+
+main{
+position:relative;z-index:2;
+display:flex;align-items:center;justify-content:center;
+width:90vw;max-width:640px;height:90vh;max-height:640px;
+border:2px solid rgba(255,255,255,0.1);
+box-shadow:0 0 30px rgba(255,0,85,0.2), 0 0 80px rgba(0,0,0,1);
+background:rgba(0,0,0,0.7);
+text-align:left;padding:5vw;
+overflow:hidden;
+}
+
+
+p{
+font-size:clamp(15px,3.5vw,20px);
+line-height:1.45;
+letter-spacing:0.02em;
+text-shadow:0 0 6px rgba(255,0,85,0.3), 0 0 12px rgba(255,255,255,0.2);
+z-index:3;
+position:relative;
+}
+
+
+/* Efecto glitch y ruido */
+.noise{
+position:fixed;inset:0;pointer-events:none;z-index:3;
+background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.08"/></svg>');
+mix-blend-mode:overlay;
+opacity:0.5;
+animation:noise 0.4s infinite steps(2,end);
+}
+
+
+@keyframes noise{0%{transform:translate(0,0)}50%{transform:translate(-1px,1px)}100%{transform:translate(1px,-1px)}}
+</style>
 </head>
 <body>
-    <div class="contenedor">
-        <p>
-            El nadador fuerte, que conoce la costa, puede aventurarse con relativa seguridad.
-            El no nadador, que no toma consejo sino de sus propios impulsos, puede pagar su temeridad con su vida.
-            Pero no debemos cometer el error de pensar que estas fuerzas invisibles son necesariamente malas y enemigas de la humanidad.
-            No son más enemigas en sí mismas que lo son el agua o el fuego, pero son potentes.
-        </p>
-    </div>
+<div class="bg"></div>
+<div class="noise"></div>
+<main>
+<p>El nadador fuerte, que conoce la costa, puede aventurarse con relativa seguridad. El no nadador, que no toma consejo sino de sus propios impulsos, puede pagar su temeridad con su vida. Pero no debemos cometer el error de pensar que estas fuerzas invisibles son necesariamente malas y enemigas de la humanidad. No son más enemigas en sí mismas que lo son el agua o el fuego, pero son potentes.</p>
+</main>
 </body>
 </html>
