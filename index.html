@@ -5,37 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El nadador fuerte</title>
     <style>
+        /* Fuente elegante y moderna */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
         body {
             background-color: #000;
-            color: #e6e6e6;
-            font-family: "Cormorant Garamond", "Georgia", serif;
+            color: #eaeaea;
+            font-family: 'Playfair Display', serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             text-align: center;
-            padding: 40px;
+            padding: 20px;
         }
 
-        .texto {
+        .contenedor {
             max-width: 900px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 60px;
-            border-radius: 10px;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.08);
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 50px 30px;
+            border-radius: 14px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.07);
             line-height: 1.8;
-            font-size: 1.4rem;
-            letter-spacing: 0.4px;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+            animation: aparecer 2s ease-in-out;
         }
 
         p {
             margin: 0;
         }
+
+        /* Animación de aparición suave */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ajuste tipográfico para móviles */
+        @media (max-width: 600px) {
+            .contenedor {
+                padding: 30px 20px;
+                font-size: 1.1rem;
+                line-height: 1.7;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="texto">
+    <div class="contenedor">
         <p>
             El nadador fuerte, que conoce la costa, puede aventurarse con relativa seguridad.
             El no nadador, que no toma consejo sino de sus propios impulsos, puede pagar su temeridad con su vida.
